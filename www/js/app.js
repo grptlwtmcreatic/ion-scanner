@@ -67,7 +67,7 @@ angular.module('starter', ['ionic','qrScanner'])
 })
 
 
-.controller('authentification', ['$scope', '$http', function($scope, $http) {
+.controller('authentification', ['$scope', '$http', '$state', function($scope, $http, $state) {
 
     $scope.onSuccess = function(data) {
         console.log(data)
@@ -78,6 +78,7 @@ angular.module('starter', ['ionic','qrScanner'])
           console.log(response)
           if (response.data == "1"){
             console.log("OKKKKKKK")
+            $state.go('Saisir');
           }
           else{
             console.log("PAS OKKKKKKK")
