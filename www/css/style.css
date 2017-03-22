@@ -1,0 +1,106 @@
+button{
+	font-family: Arial,sans-serif;
+    font-size: 1.8em;
+    display: block;
+  
+    width:80%;
+    margin-left: 10%;
+    margin-top: 20px;
+    margin-bottom: 15px;
+    font-weight: 600;
+    text-align: center;
+    background-color: : #fae630;
+    background: -webkit-linear-gradient(#555,#2C2C2C);
+    background: -moz-linear-gradient(#555,#2C2C2C);
+    background: -ms-linear-gradient(#555,#2C2C2C);
+    background: -o-linear-gradient(#555,#2C2C2C);
+    background: linear-gradient(#555,#2C2C2C);
+    border-radius: 8px;
+    box-shadow: 0 0 5px rgba(0,0,0,0.5), 0 -1px 0 rgba(225,225,225, 0.4);
+    color: #fae630;
+    text-shadow: 0 1px 0 rgba(225,225,225,0.2);
+}
+
+.home{
+    text-align: center;
+
+}
+
+h1{
+    color: #FFF;
+}
+
+#saisir{
+    display: none;
+}
+
+.saisir{
+    text-align: center; 
+    margin-top: 20px;
+}
+
+img{
+    margin-top: 15px;
+}
+
+#title{
+    color:#fae630;
+}
+
+.title{
+    text-align: center!important;
+}
+
+.file{
+    color: #FFF;
+}
+
+input, textarea{
+    margin: 5px;
+    border-radius: 7px;
+}
+
+.div_center{
+    text-align: center;
+}
+
+ion-content{
+    background-color: #2d2f30;
+}
+
+.button-home{
+    position: absolute;
+    width: 80%;
+    height: 100px;
+    margin-left: 10%;
+    margin-top: 20px;
+    z-index: 2000;
+    left: 0px;
+    background: rgba(55,55,55,0.9);
+}
+
+.button-saisir{
+    top:378px;
+}
+
+.button-scan{
+
+}
+
+#change{
+    
+}
+
+.bar{
+    background-color: #fae630;
+    font-size: 1.2em;
+}
+
+:required {
+    box-shadow: 0 0 3px rgba(255,0,0.5);
+}
+
+.qrcode{
+    width: 95%;
+    z-index:1000;
+}
