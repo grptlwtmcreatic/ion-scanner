@@ -27,36 +27,105 @@ angular.module('starter', ['ionic','qrScanner'])
 
 })
 
-.controller('saisirController', function($scope){
+//Controleur pour saisir ou modifier une fiche produit.
+
+.controller('saisirController', ['$scope', '$http','$state', function($scope, $http, $state){
+
+//On lance le scanner et on récupère dans data l'adresse encodée.
 
    $scope.onSuccess = function(data) {
-              
-       $('#saisir').css({"display":"block"})
-       $('#read').html(data);
-        $read = data;
-        console.log(data);
-       id_qr_code = $read.replace("http://quai-lab.com/?pr_inventory=product&pr_qrcode=", "");
-      var idq = id_qr_code;
-       $('input[type=hidden]').val(idq);
-       $('#id_qr_code1').html("La QR Code est récupéré.");
-       
-       if (idq != null){
-         $('#reader').remove();
-         $('#change').remove();
+
+      $read = data;
+      console.log(data);
+
+//On récupère l'id unique du QR pour le mettre dans le formulaire
+
+      id_qr_code = $read.replace("http://quai-lab.com/?pr_inventory=product&pr_qrcode=","");
+      $('input[type=hidden]').val(id_qr_code);
+      $('#id_qr_code1').html("Le QR Code est récupéré.");
+        
+      if (id_qr_code != null){
                     
-          console.log(idq);
+          console.log(id_qr_code);
+
+//On récupère le json associé à l'adresse encodée et si il n'est pas vide, on remplit les champs du formulaire.
+
           var json = $.getJSON($read);
                     
           if (json != null){
             $read = $read.replace("product", "quickview");
             $.getJSON($read, function(data) {
-              $('#lib').val(data.title);
+              $('#libelle').val(data.title);
               $('#description').val(data.description);
               $img = data.img;
               jQuery('#img').attr('src', $img);
             });
           }
-        }
+      }
+
+        
+        /*$scope.save = function(){
+          
+          console.log("je suis dans la fonction save")
+
+            
+         // J'empêche le comportement par défaut du navigateur, c-à-d de soumettre le formulaire
+ 
+        
+ 
+          libelle = $('#libelle').val();
+          image = $('#image').val();
+          description = $('#description').val();
+          qrcode = $('#qrcode').val();
+ 
+          
+         /*$http.post(
+            'http://quai-lab.com/?pr_inventory=add',
+            {'libelle ': libelle, 'description' : description, 'image' : image, 'qrcode' : qrcode},
+            'contenttype'
+          ).then(function successCallback(response) {
+              // this callback will be called asynchronously
+              // when the response is available
+              console.log('OK' + response)
+            }, function errorCallback(response) {
+              // called asynchronously if an error occurs
+              // or server returns response with an error status.
+              console.log('Erreur' + response)
+            });*/
+
+            //console.log(image)
+            /*$.ajax({
+                url: "http://quai-lab.com/?pr_inventory=add",
+                type: "POST",
+                data: {libelle : libelle, description : description, qrcode : qrcode},
+                
+                success: function(response, statut) {
+                    console.log(response)
+                    if(response == true) {
+                        console.log("j'ai bien envoyé");
+                        
+                        
+                        
+                    } else {
+                        console.log('Erreur : '+ response);
+                    }
+                },
+                error: function(response, statut) {
+                  console.log('ahhh' +response)
+                  
+                },
+
+                complete : function(resultat, statut){
+                  $state.go('home');
+                }
+
+            });
+                
+          
+          
+        }*/
+
+
     };
     $scope.onError = function(error) {
         console.log(error);
@@ -64,8 +133,45 @@ angular.module('starter', ['ionic','qrScanner'])
     $scope.onVideoError = function(error) {
         console.log(error);
     }; 
-})
 
+    $(function(){
+          $('#saisirF').on('submit', function(e){
+            e.preventDefault();
+
+            var $form = $(this);
+            var formdata = (window.FormData) ? new FormData($form[0]) : null;
+            var data = (formdata !== null) ? formdata : $form.serialize();
+
+            $.ajax({
+              url: $form.attr('action'),
+              type: $form.attr('method'),
+              contentType: false,
+              processData: false,
+              dataType: 'default: Intelligent Guess (Other values: xml, json, script, or html)',
+              data: data,
+              success: function (response) {
+                console.log("success")
+              },
+
+              error: function(response) {
+                console.log("error")
+                console.log(response)
+              },
+
+              complete : function(resultat, statut){
+                  $state.go('home');
+                }
+            });
+            
+            
+            
+            
+          });
+        });
+
+}])
+
+//Scan pour s'authentifier.
 
 .controller('authentification', ['$scope', '$http', '$state', function($scope, $http, $state) {
 
@@ -126,9 +232,6 @@ angular.module('starter', ['ionic','qrScanner'])
         console.log(error);
     };
 
-    $scope.stopVideo = function(){
-      console.log("Video eteinte");
-    };
 }])
 
 //http://quai-lab.com/?pr_inventory=product&pr_qrcode=584e5ff437551

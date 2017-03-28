@@ -5,29 +5,28 @@
       </div>
 
       <div class="title">       
-            <qr-scanner width="400" height="300" ng-success="onSuccess(data)" />
+            <qr-scanner id="qr-scanner" width="400" height="300" ng-success="onSuccess(data)" />
       </div>
       
       
-      <div id="saisir" >
-        <form id="saisirF" action="http://quai-lab.com/?pr_inventory=add" method="POST" enctype="multipart/form-data">
+      <div id="saisir">
+        <form id="saisirF" method='POST' action='http://quai-lab.com/?pr_inventory=add' enctype="multipart/form-data" >
           <div class="item-input-inset">
             <i class="icon ion-edit placeholder-icon"></i>       
-            <input id="lib" type="text" name="libelle" placeholder="Libelle" >
+            <input id="libelle" type="text" name="libelle" placeholder="Libelle" >
           </div>
-          <input name="qrcode" type="hidden" value="" class="saisir">
-          <div id="id_qr_code1" class="saisir"></div>
-          <div  class="saisir"></div>
+          <input id="qrcode" name="qrcode" type="hidden" value="">
+          <div id="id_qr_code1"></div>
           <div class="item-input-inset">
               <i class="icon ion-edit placeholder-icon"></i>
               <textarea id="description" name="description" cols="45" rows="10" placeholder="Description"></textarea>
           </div>
-          <input class="file" type="file" name="image" accept="image/*" capture>
-          <div  class="title">
+          <input class="file" type="file" id="image" name="image" accept="image/*" capture>
+          <div  style="text-align: center;">
           <img id="img">
           </div>
-          <button type="submit">Enregistrer</button>     
-    	  </form>
+          <button  type='submit'>Enregistrer</button>     
+        </form>
       </div>
   </ion-content>
 </ion-view>
