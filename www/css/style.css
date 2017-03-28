@@ -6,7 +6,7 @@ button{
     width:80%;
     margin-left: 10%;
     margin-top: 20px;
-    margin-bottom: 15px;
+    margin-bottom: 50px;
     font-weight: 600;
     text-align: center;
     background-color: : #fae630;
@@ -23,11 +23,20 @@ button{
 
 .home{
     text-align: center;
+    top:50px;
 
+}
+.default-title{
+    display: none !important;
 }
 
 h1{
     color: #FFF;
+}
+
+.scanner{
+    width: 100%;
+    height: 50%;
 }
 
 .saisir{
@@ -38,13 +47,15 @@ h1{
 img{
     margin-top: 15px;
 }
-
 #title{
     color:#fae630;
+    font-size:1.4em;
+    margin-top: 20px;
 }
 
 .title{
     text-align: center!important;
+    color:black;
 }
 
 .file{
@@ -63,13 +74,16 @@ input, textarea{
 ion-content{
     background-color: #2d2f30;
 }
+.bar button {
+    max-width: 100px;
+}
 
 .button-home{
     position: absolute;
-    width: 80%;
+    width: 60%;
     height: 100px;
-    margin-left: 10%;
-    margin-top: 20px;
+    margin-left: 20%;
+    margin-top: 30px;
     z-index: 2000;
     left: 0px;
     background: rgba(55,55,55,0.9);
